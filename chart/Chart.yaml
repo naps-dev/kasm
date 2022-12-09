@@ -1,0 +1,7 @@
+apiVersion: v2
+name: kasm-workspaces
+icon: https://avatars.githubusercontent.com/u/48762190?v=4
+description: Kasm Workspaces
+type: application
+version: 0.1.0
+appVersion: "1.11.0"
