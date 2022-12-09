@@ -12,6 +12,6 @@ spec:
   http:
     - route:
         - destination:
-            host: kasm.kasm.svc.cluster.local
+            host: kasm-kasm-workspaces.kasm.svc.cluster.local
             port:
-              number: 443
+              number: 8080

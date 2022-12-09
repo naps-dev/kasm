@@ -33,6 +33,20 @@ spec:
           medium: Memory
       containers:
         - name: {{ .Chart.Name }}
+          command: ["/bin/bash"]
+          args:
+          - "-c"
+          - |
+            /bin/bash <<'EOF'
+            touch /opt/NO_WIZARD
+            /init&
+            INIT_PID=$!
+            sleep 10
+            sed -i 's/ssl ;/;/g' /kasm_release/install.sh
+            /kasm_release/install.sh -B -H -e -L 8080 -P password -U password -u -b &
+            echo "resuming $INIT_PID"
+            wait $INIT_PID
+            EOF
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -41,23 +55,14 @@ spec:
           - name: VNC_PW
             value: {{ .Values.vncpass }}
           ports:
-            - name: https
-              containerPort: 443
+            - name: http
+              containerPort: 8080
               protocol: TCP
-            - name: install
-              containerPort: 3000
-              protocol: TCP
-          livenessProbe:
+          readinessProbe:
             httpGet:
               path: /api/__healthcheck
-              port: 443
-              scheme: HTTPS
-            initialDelaySeconds: 360
-          readinessProbe: 
-            httpGet:
-              path: /
-              port: 3000
-              scheme: HTTPS
+              port: 8080
+              scheme: HTTP
             initialDelaySeconds: 10
           volumeMounts:
             - mountPath: /dev/shm
