@@ -1,3 +1,4 @@
 *.tar.zst
 *.tar.gz
 install.sh
+workspaces/*
