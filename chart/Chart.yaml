@@ -3,5 +3,5 @@ name: kasm-workspaces
 icon: https://avatars.githubusercontent.com/u/48762190?v=4
 description: Kasm Workspaces
 type: application
-version: 0.1.3-dev1
+version: 0.1.3-dev2
 appVersion: "1.11.0"
