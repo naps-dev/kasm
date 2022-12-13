@@ -1,0 +1,10 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: kasm
+  namespace: kasm
+spec:
+  host: kasm-kasm-workspaces.kasm.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: SIMPLE
