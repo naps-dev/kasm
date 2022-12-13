@@ -31,3 +31,5 @@ spec:
   dependsOn:
     - name: istio
       namespace: bigbang
+  values:
+    domain: ###ZARF_VAR_DOMAIN###

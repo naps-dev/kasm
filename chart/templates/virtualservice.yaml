@@ -1,17 +1,20 @@
----
+{{- if .Values.istio.enabled -}}
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: kasm
-  namespace: kasm
+  namespace: {{ .Release.Namespace }}
 spec:
   hosts:
-    - "kasm.###ZARF_VAR_DOMAIN###"
+  {{- range .Values.istio.hosts }}
+    - {{ tpl . $}}
+  {{- end }}
   gateways:
     - istio-system/dataplane
   http:
     - route:
         - destination:
-            host: kasm-kasm-workspaces.kasm.svc.cluster.local
+            host: {{ include "kasm.fullname" . }}
             port:
               number: 8080
+{{- end }}

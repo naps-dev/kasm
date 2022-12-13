@@ -42,7 +42,7 @@ spec:
             /init&
             INIT_PID=$!
             sleep 10
-            sed -i 's/ssl ;/;/g' /kasm_release/install.sh
+            # sed -i 's/ssl ;/;/g' /kasm_release/install.sh
             /kasm_release/install.sh -B -H -e -L 8080 -P password -U password -u -b &
             echo "resuming $INIT_PID"
             wait $INIT_PID
@@ -62,7 +62,7 @@ spec:
             httpGet:
               path: /api/__healthcheck
               port: 8080
-              scheme: HTTP
+              scheme: HTTPS
             initialDelaySeconds: 10
           volumeMounts:
             - mountPath: /dev/shm

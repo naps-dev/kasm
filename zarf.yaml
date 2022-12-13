@@ -28,6 +28,5 @@ components:
           - manifests/namespace.yaml
           - manifests/gitrepository.yaml
           - manifests/helmrelease.yaml
-          - manifests/virtualservice.yaml
     images:
       - docker.io/kasmweb/workspaces:1.11.0
