@@ -2,6 +2,13 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+domain: bigbang.dev
+
+istio:
+  enabled: true
+  hosts:
+    - kasm.{{ .Values.domain }}
+
 replicaCount: 1
 
 image:

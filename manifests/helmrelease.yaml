@@ -31,3 +31,9 @@ spec:
   dependsOn:
     - name: istio
       namespace: bigbang
+  values:
+    istio:
+      enabled: true
+      hosts:
+        - "kasm.###ZARF_VAR_DOMAIN###"
+
