@@ -32,8 +32,4 @@ spec:
     - name: istio
       namespace: bigbang
   values:
-    istio:
-      enabled: true
-      hosts:
-        - "kasm.###ZARF_VAR_DOMAIN###"
-
+    domain: ###ZARF_VAR_DOMAIN###
